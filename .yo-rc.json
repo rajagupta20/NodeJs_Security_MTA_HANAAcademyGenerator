@@ -1,0 +1,14 @@
+{
+  "generator-saphanaacademy-mta": {
+    "projectName": "nodejs_mta_app_hanaacademy",
+    "newDir": true,
+    "cloudsdk": true,
+    "APIKey": "2BKsGO7MiyKAeiSRDITy64y4vhrZRY8Z",
+    "hana": true,
+    "xsjs": false,
+    "authentication": true,
+    "authorization": true,
+    "attributes": true,
+    "buildDeploy": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "xsappname": "nodejs_mta_app_hanaacademy",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "User"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    }
+  ],
+  "attributes": [
+    {
+        "name": "Region",
+        "description": "Region",
+        "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "User",
+      "description": "User",
+      "attribute-references": [
+        {
+            "name": "Region"
+        }
+      ],
+      "scope-references": [
+        "$XSAPPNAME.User"
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Admin",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "nodejs_mta_app_hanaacademy_Admin",
+      "description": "nodejs_mta_app_hanaacademy Admin",
+      "role-template-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ]
+}

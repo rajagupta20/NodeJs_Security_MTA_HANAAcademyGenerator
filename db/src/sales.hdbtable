@@ -1,0 +1,8 @@
+COLUMN TABLE "nodejs_mta_app_hanaacademy.db::sales" 
+    (
+        "id" INTEGER, 
+        "region" VARCHAR(100),
+        "country" VARCHAR(100),
+        "amount" INTEGER,
+        PRIMARY KEY ("id") 
+    )

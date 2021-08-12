@@ -1,0 +1,58 @@
+ID: nodejs_mta_app_hanaacademy
+_schema-version: "3.1"
+version: 0.0.1
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  - name: nodejs_mta_app_hanaacademy-db
+    type: hdb
+    path: db
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+    requires:
+      - name: nodejs_mta_app_hanaacademy-uaa
+      - name: nodejs_mta_app_hanaacademy-hdi
+
+  - name: nodejs_mta_app_hanaacademy-srv
+    type: nodejs
+    path: srv
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    provides:
+      - name: srv_api
+        properties:
+          url: ${default-url}
+    requires:
+      - name: nodejs_mta_app_hanaacademy-uaa
+      - name: nodejs_mta_app_hanaacademy-hdi
+
+
+  - name: nodejs_mta_app_hanaacademy-app
+    type: html5
+    path: app
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    requires:
+      - name: nodejs_mta_app_hanaacademy-uaa
+      - name: srv_api
+        group: destinations
+        properties:
+          name: srv
+          url: ~{url}
+          forwardAuthToken: true
+
+resources:
+  - name: nodejs_mta_app_hanaacademy-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+  - name: nodejs_mta_app_hanaacademy-hdi
+    type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-name: ${service-name}

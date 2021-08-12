@@ -1,0 +1,16 @@
+{
+    "name": "nodejs_mta_app_hanaacademy-srv",
+    "dependencies": {
+        "express": "latest",
+        "body-parser": "latest",
+        "@sap/xsenv": "latest"
+        ,"@sap/xssec": "latest"
+        ,"passport": "latest"
+        ,"@sap/hdbext": "latest"
+        ,"@sap-cloud-sdk/core": "latest"
+        ,"@sap/cloud-sdk-vdm-sales-order-service": "latest"
+    },
+    "scripts": {
+        "start": "node server.js"
+    }
+}
